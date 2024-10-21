@@ -40,6 +40,7 @@ class TestCases(unittest.TestCase):
         result = ascending_pairs(lists2)
         expected = [[2, 4], [3, 5, 1], [8], [7, 9]]
         self.assertEqual(result, expected)
+
     def test_ascending_2(self):
         lists2 = [[5, 3], [2, 4], [6, 1]]
         result = ascending_pairs(lists2)
@@ -48,6 +49,7 @@ class TestCases(unittest.TestCase):
 
     # Part 4
 from hw1 import Price
+#I had to make a new class for these test to work, why?
 class TestAdd(unittest.TestCase):
     def test_adding(self):
         price1 = Price(5,50)
@@ -62,7 +64,6 @@ class TestAdd(unittest.TestCase):
         result = add_prices(price1, price2)
         expected = Price(6, 30)
         self.assertEqual((result.dollars, result.cents), (expected.dollars, expected.cents))
-
 
     # Part 5
 
