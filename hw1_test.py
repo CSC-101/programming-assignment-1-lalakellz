@@ -2,16 +2,15 @@ import data
 import hw1
 import unittest
 
-from hw1 import add_prices, vowel_count, short_lists, ascending_pairs
+from hw1 import add_prices, vowel_count, short_lists, ascending_pairs, rectangle_area, books_by_author
 
 
 # Write your test cases for each part below.
-
 class TestCases(unittest.TestCase):
     # Part 1
     def test_vowel(self):
         input_str = "We Love Donuts"
-        result = vowel_count((input_str))
+        result = vowel_count(input_str)
         expected = 5
         self.assertEqual(result, expected)
 
@@ -66,12 +65,45 @@ class TestAdd(unittest.TestCase):
         self.assertEqual((result.dollars, result.cents), (expected.dollars, expected.cents))
 
     # Part 5
+from hw1 import Rectangle
+class TestRectArea(unittest.TestCase):
+    def test_rect_area(self):
+        rec = Rectangle(2, 5, 5, 2)
+        result = rectangle_area(rec)
+        expected = 9
+        self.assertEqual(result, expected)
 
+    def test_rect_area_2(self):
+        rec = Rectangle(0, 10, 10, 0)
+        result = rectangle_area(rec)
+        expected = 100
+        self.assertEqual(result, expected)
 
     # Part 6
+from hw1 import Book
+class TestBooks(unittest.TestCase):
 
+    def test_books(self):
+        book1 = Book("Pink Matter", "Frank Ocean")
+        book2 = Book("911", "Tyler the Creator")
+        book3 = Book("White Ferari", "Frank Ocean")
 
-    # Part 7
+        books = [book1, book2, book3]
+        result = books_by_author("Frank Ocean", books)
+        expected = [book1, book3]
+        self.assertEqual(result, expected)
+
+    def test_books_2(self):
+        book1 = Book("Pink Matter", "Frank Ocean")
+        book2 = Book("911", "Tyler the Creator")
+        book3 = Book("White Ferari", "Frank Ocean")
+
+        books = [book1, book2, book3]
+        result = books_by_author("ASAP Rocky", books)
+        expected = []
+        self.assertEqual(result, expected)
+
+# Part 7
 
 
     # Part 8

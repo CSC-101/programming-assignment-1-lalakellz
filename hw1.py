@@ -4,12 +4,16 @@ import data
 
 # Part 1
 def vowel_count(input_string: str) -> int:
+    #gives all possible vowel values
     vowels = "aeiouAEIOU"
+    # adds 1 each time a vowel is found in the input string
     count = sum(1 for char in input_string if char in vowels)
+   #returns the sum of the vowels in input_string
     return count
 
 # Part 2
 def short_lists(input_lists: list[list[int]]) -> list[list[int]]:
+    #checks if length of list is equal to 2 then returns
     return [lst for lst in input_lists if len(lst) == 2]
 
 # Part 3
@@ -56,10 +60,35 @@ def add_prices(price1: Price, price2: Price) -> Price:
     return Price(total_dollars, total_cents)
 
 # Part 5
+class Rectangle:
+    # Initialize a rectangle with the coordinates of the top-left (x1, y1) and bottom-right (x2, y2) corners.
+    def __init__(self, x1: int, y1: int, x2: int, y2: int):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
 
+def rectangle_area(rec: Rectangle) -> int:
+    width = rec.x2 - rec.x1
+    height = rec.y1 - rec.y2
+    return width * height
 
 # Part 6
+class Book:
 
+    def __init__(self, title: str, author: str):
+        self.title = title
+        self.author = author
+    """
+    Parameters:
+    title (str): The title of the book.
+    author (str): The name of the author.
+    """
+
+#takes an authors name and a list of Book objects, returning a list of books written by the specified author
+def books_by_author(author_name: str, books: list[Book]) -> list[Book]:
+#  returns list of Book objects written by the specified author
+    return [book for book in books if book.author == author_name]
 
 # Part 7
 
