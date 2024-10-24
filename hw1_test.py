@@ -1,8 +1,11 @@
+import math
+
 import data
 import hw1
 import unittest
 
-from hw1 import add_prices, vowel_count, short_lists, ascending_pairs, rectangle_area, books_by_author
+from hw1 import add_prices, vowel_count, short_lists, ascending_pairs, rectangle_area, books_by_author, circle_bound, \
+    Employee, below_pay_average
 
 
 # Write your test cases for each part below.
@@ -104,12 +107,38 @@ class TestBooks(unittest.TestCase):
         self.assertEqual(result, expected)
 
 # Part 7
+    def test_circle(self):
+        rec = Rectangle(2, 5, 8, 1)
+        circle = circle_bound(rec)
+        expected_center = (5.0, 3.0)
+        expecter_radius = math.sqrt(9 + 4)
+        self.assertEqual((circle.center_x, circle.center_y), expected_center)
+        self.assertAlmostEqual(circle.radius, expecter_radius)
 
+    def test_circle_2(self):
+        rec = Rectangle(0, 4, 4, 0)
+        circle = circle_bound(rec)
+        expected_center = (2.0, 2.0)
+        expected_radius = math.sqrt(2**2 + 2**2)
+        self.assertEqual((circle.center_x, circle.center_y), expected_center)
+        self.assertAlmostEqual(circle.radius, expected_radius)
 
     # Part 8
+    def test_below_pay(self):
+        emp1 = Employee("Liyah", 50000)
+        emp2 = Employee("Ella", 40000)
+        emp3 = Employee("Josh", 60000)
 
+        employees = [emp1, emp2, emp3]
+        result = below_pay_average(employees)
+        expected = ['Ella']
+        self.assertEqual(result, expected)
 
-
+    def test_below_pay_2(self):
+        employees = []
+        result = below_pay_average(employees)
+        expected = []
+        self.assertEqual(result, expected)
 
 
 if __name__ == '__main__':

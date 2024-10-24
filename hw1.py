@@ -69,6 +69,13 @@ class Rectangle:
         self.y2 = y2
 
 def rectangle_area(rec: Rectangle) -> int:
+    """
+    This function computes the area of a rectangle given its coordinates.
+    It assumes the rectangle is axis-aligned, with sides parallel to the x- and y-axes.
+
+    Parameters:
+    rec (Rectangle): The rectangle for which to compute the area
+    """
     width = rec.x2 - rec.x1
     height = rec.y1 - rec.y2
     return width * height
@@ -77,13 +84,14 @@ def rectangle_area(rec: Rectangle) -> int:
 class Book:
 
     def __init__(self, title: str, author: str):
+        """
+        Parameters:
+        title (str): The title of the book.
+        author (str): The name of the author.
+        """
         self.title = title
         self.author = author
-    """
-    Parameters:
-    title (str): The title of the book.
-    author (str): The name of the author.
-    """
+
 
 #takes an authors name and a list of Book objects, returning a list of books written by the specified author
 def books_by_author(author_name: str, books: list[Book]) -> list[Book]:
@@ -91,8 +99,49 @@ def books_by_author(author_name: str, books: list[Book]) -> list[Book]:
     return [book for book in books if book.author == author_name]
 
 # Part 7
+import math
+class Circle:
+    def __init__(self, center_x:float, center_y:float, radius: float):
+        """
+        Parameters:
+        center_x (float): x-coordinate of the circle's center.
+        center_y (float): y-coordinate of the circle's center.
+        radius (float): Radius of the circle.
+        """
+        self.center_x = center_x
+        self.center_y = center_y
+        self.radius = radius
 
+def circle_bound(rec: Rectangle) -> Circle:
+    # Calculate the center of the rectangle
+    center_x = (rec.x1 + rec.x2) / 2
+    center_y = (rec.y1 + rec.y2) / 2
+
+    # Calculate the distance from the center to one of the corners
+    radius = math.sqrt((rec.x1 - center_x) ** 2 + (rec.y1 - center_y) ** 2)
+    return Circle(center_x, center_y, radius)
 
 # Part 8
+class Employee:
+    def __init__(self, name:str, pay_rate: float):
+        """
+        This function takes a list of Employee objects and returns a list of names of employees
+        whose pay rate is below the average pay rate of all employees in the list.
 
+        Parameters:
+        employees (list[Employee]): A list of Employee objects.
+        """
+        self.name = name
+        self.pay_rate = pay_rate
 
+def below_pay_average(employees: list[Employee]) -> list[str]:
+    if not employees:
+        return [] # Return an empty list if there are no employees
+
+    # Calculate the total pay and the average pay rate
+    total_pay = sum(employee.pay_rate for employee in employees)
+    average_pay = total_pay / len(employees)
+
+    # Get the names of employees whose pay is less than the average
+    below_average = [employee.name for employee in employees if employee.pay_rate < average_pay]
+    return below_average
